@@ -64,7 +64,7 @@ jobs:
       - name: Configure Git
         run: |
          git config --global user.name "build"
-         git config --global user.email "2106456897@qq.com"
+         git config --global user.email "3620603668@qq.com"
 
       # 1. 拉取仓库  
       - name: Checkout  
@@ -123,10 +123,10 @@ jobs:
          set -e
 
          cd kernel_workspace
-         git clone https://$TOKEN@github.com/egcd521/111.git
-         git clone https://github.com/egcd521/egcd.git
+         git clone https://$TOKEN@github.com/3620603660/boot.git
+         git clone https://github.com/3620603660/Px.git
          cd kernel_platform
-         cp ../111/boot.patch ./common/
+         cp ../boot/1.patch ./common/
          cd ./common
          patch -s -p1 -F 3 < boot.patch
          echo "✅ SUSFS 和 boot patch 应用完成"
@@ -134,7 +134,7 @@ jobs:
       - name: Apply UNICODE_BYPASS and MEMORY_OPT
         if: ${{ github.event.inputs.UNICODE_BYPASS == 'true' }}
         run: |
-          PATCH_DIR="${GITHUB_WORKSPACE}/kernel_workspace/egcd/patches"
+          PATCH_DIR="${GITHUB_WORKSPACE}/kernel_workspace/Px/patches"
           cd kernel_workspace/kernel_platform/common
           patch -p1 --forward < "${PATCH_DIR}/optimized_mem_operations.patch"
           patch -p1 --forward < "${PATCH_DIR}/file_struct_8bytes_align.patch"
@@ -215,7 +215,7 @@ jobs:
       - name: 拉取afdo
         run: |
           cd kernel_workspace/kernel_platform/
-          git clone https://github.com/egcd521/afdo.git
+          git clone https://github.com/3620603660/afdo.git
             
       - name: Set build timestamp
         run: |         
@@ -273,7 +273,7 @@ jobs:
       - name: Prepare AnyKernel3 package
         run: |
           cd kernel_workspace/kernel_platform/dist
-          git clone https://github.com/egcd123/AnyKernel3.git AnyKernel3 --depth=1
+          git clone https://github.com/3620603660/AnyKernel3.git AnyKernel3 --depth=1
           rm -rf AnyKernel3/.git
           rm -f AnyKernel3/push.sh
           cp Image AnyKernel3/
